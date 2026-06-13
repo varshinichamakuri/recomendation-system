@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recommendations</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #07111f, #13263d 45%, #09111d);
+        color: #eff6ff;
+        min-height: 100vh;
+      }
+      .page { max-width: 980px; margin: 0 auto; padding: 30px 18px 60px; }
+      .card {
+        background: rgba(8, 15, 25, 0.88);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 18px;
+        padding: 22px;
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.45);
+      }
+      h1 { margin-top: 0; font-size: 1.8rem; }
+      p { color: #dbeafe; }
+      .grid {
+        display: grid;
+        gap: 12px;
+        margin-top: 18px;
+      }
+      .item {
+        background: rgba(15, 23, 42, 0.95);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 14px;
+        padding: 14px;
+      }
+      .item h3 { margin: 0 0 6px; font-size: 1.02rem; }
+      .meta { color: #bfdbfe; font-size: 0.95rem; }
+      a.button {
+        display: inline-block;
+        margin-top: 16px;
+        text-decoration: none;
+        border-radius: 10px;
+        padding: 10px 14px;
+        background: linear-gradient(135deg, #38bdf8, #818cf8);
+        color: #082f49;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <h1>Top {{ top_n }} Recommendations</h1>
+        <p>These are the highest-ranked movies based on the current popularity model.</p>
+
+        <div class="grid">
+          {% for movie in movies %}
+          <article class="item">
+            <h3>{{ movie.movie_title }}</h3>
+            <div class="meta">Votes: {{ movie.vote_count }} | Avg rating: {{ movie.vote_average }} | Weighted score: {{ movie.weighted_score }}</div>
+          </article>
+          {% endfor %}
+        </div>
+
+        <a class="button" href="/">Back to the home page</a>
+      </section>
+    </main>
+  </body>
+</html>

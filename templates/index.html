@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MovieLens Recommender</title>
+    <style>
+      :root { color-scheme: dark; }
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #07111f, #13263d 45%, #09111d);
+        color: #eff6ff;
+        min-height: 100vh;
+      }
+      .page {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px 60px;
+      }
+      .card {
+        background: rgba(8, 15, 25, 0.88);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 18px;
+        padding: 24px;
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.45);
+      }
+      h1 { font-size: 2rem; margin-top: 0; }
+      p { color: #dbeafe; line-height: 1.5; }
+      form { display: grid; gap: 14px; margin-top: 20px; }
+      label { font-weight: 600; color: #bfdbfe; }
+      input, button {
+        border-radius: 10px;
+        border: 1px solid #334155;
+        padding: 12px 14px;
+        font-size: 1rem;
+      }
+      input { background: #0f172a; color: #eff6ff; }
+      button {
+        background: linear-gradient(135deg, #38bdf8, #818cf8);
+        color: #082f49;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .pill { color: #cbd5e1; font-size: 0.95rem; }
+      .error { color: #fca5a5; margin-top: 8px; }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <h1>MovieLens Recommendation Web App</h1>
+        <p>
+          This is a simple website version of your recommendation project. It shows the most popular movies from the MovieLens 100k dataset.
+        </p>
+        <p class="pill">Pick how many recommendations you want, then click Generate.</p>
+
+        {% if error %}
+          <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <form action="/recommend" method="post">
+          <label for="top_n">Number of recommendations</label>
+          <input id="top_n" name="top_n" type="number" min="1" max="20" value="10" required />
+          <button type="submit">Generate recommendations</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
